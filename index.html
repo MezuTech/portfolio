@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mezu Eric - Software Engineer / Mobile App Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #000000;
+            --accent: #3B82F6;
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+            --background: #FFFFFF;
+            --card-bg: #F8FAFC;
+            --border: #E2E8F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .resume-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .resume-btn:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .resume-btn::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+        }
+
+        .profile-image-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out 0.1s both;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-greeting {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .hero-name {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: -3px;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-role {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -2px;
+            line-height: 1.2;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-image::after {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-placeholder {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: gap 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-item {
+            background: var(--card-bg);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 5rem 3rem;
+            text-align: center;
+            margin: 4rem auto;
+            border: 1px solid var(--border);
+        }
+
+        .contact-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            letter-spacing: -1.5px;
+        }
+
+        .contact-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: white;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            border-color: var(--accent);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        .contact-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 5%;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .profile-image-container {
+                width: 140px;
+                height: 140px;
+            }
+
+            .hero {
+                padding: 6rem 5% 3rem;
+            }
+
+            .hero-name {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .hero-role {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section {
+                padding: 4rem 5%;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 1rem;
+            }
+
+            .contact-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <div class="logo">Mezu Eric</div>
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+                <a href="#" class="resume-btn" id="navResumeBtn">
+                    <i class="fas fa-download"></i> Resume
+                </a>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="profile-image-container">
+                <img src="profile.jpg" alt="Mezu Eric" class="profile-image">
+            </div>
+            <p class="hero-greeting">Hi, I'm Mezu Eric</p>
+            <h1 class="hero-name">Software Engineer / Mobile App Developer</h1>
+            <p class="hero-description">
+                I build intuitive, user-centered mobile applications that combine elegant design with powerful functionality. 
+                Specializing in Flutter development, I transform ideas into seamless cross-platform experiences.
+            </p>
+            <div class="hero-cta">
+                <a href="#work" class="btn-primary">
+                    View My Work
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+                <a href="#contact" class="btn-secondary">
+                    Let's Connect
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="work" class="section">
+        <div class="section-header">
+            <p class="section-label">Portfolio</p>
+            <h2 class="section-title">Featured Work</h2>
+        </div>
+        <div class="projects-grid">
+            <!-- Project 1: Cookies App -->
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-placeholder">🍪</div>
+                    <!-- <img src="project1.jpg" alt="Cookies App"> -->
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Cookies App</h3>
+                    <p class="project-description">
+                        A delightful mini e-commerce application that brings the sweetness of online shopping to life. 
+                        Features include an intuitive product catalog, seamless cart management, and a streamlined checkout process. 
+                        Built with Flutter and Firebase, it showcases smooth animations and responsive design patterns.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Flutter</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">E-commerce</span>
+                        <span class="tag">UI/UX</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        View Project
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2: Jobsly -->
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-placeholder">💼</div>
+                    <!-- <img src="project2.jpg" alt="Jobsly App"> -->
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Jobsly</h3>
+                    <p class="project-description">
+                        A comprehensive job search platform that empowers users to discover, apply, and bookmark their dream opportunities. 
+                        Features light and dark mode for comfortable viewing in any environment. 
+                        Integrates advanced CRUD operations using Hive for local storage and Supabase for backend services, 
+                        delivering a fast, reliable, and feature-rich job hunting experience.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Flutter</span>
+                        <span class="tag">Supabase</span>
+                        <span class="tag">Hive</span>
+                        <span class="tag">Dark Mode</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        View Project
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3: Logistics App -->
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-placeholder">📦</div>
+                    <!-- <img src="project3.jpg" alt="Logistics App"> -->
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Logistics Tracker</h3>
+                    <p class="project-description">
+                        A real-time logistics and delivery tracking application that keeps users connected to their shipments. 
+                        Leverages OpenStreetMap integration for accurate location tracking and route visualization, 
+                        providing transparent and efficient package monitoring from pickup to delivery.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Flutter</span>
+                        <span class="tag">OpenStreetMap</span>
+                        <span class="tag">Real-time</span>
+                        <span class="tag">Geolocation</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        View Project
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="section-header">
+            <p class="section-label">Expertise</p>
+            <h2 class="section-title">Skills & Technologies</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <span class="skill-icon">📱</span>
+                <p class="skill-name">Flutter</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">🎯</span>
+                <p class="skill-name">Dart</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">🔥</span>
+                <p class="skill-name">Firebase</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">⚡</span>
+                <p class="skill-name">Serverpod</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">💾</span>
+                <p class="skill-name">Hive</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">🗄️</span>
+                <p class="skill-name">Supabase</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">📐</span>
+                <p class="skill-name">Responsive Design</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">✨</span>
+                <p class="skill-name">Animations</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">🎨</span>
+                <p class="skill-name">UI/UX</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">🔗</span>
+                <p class="skill-name">REST APIs</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">🌐</span>
+                <p class="skill-name">State Management</p>
+            </div>
+            <div class="skill-item">
+                <span class="skill-icon">🛠️</span>
+                <p class="skill-name">Git</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="contact-section">
+            <h2 class="contact-title">Hire Me / Let's Connect</h2>
+            <p class="contact-subtitle">
+                Interested in working together? I'm always open to discussing new projects, 
+                creative ideas, or opportunities to be part of your vision.
+            </p>
+            
+            <div class="contact-links">
+                <a href="mailto:mezueric@gmail.com" class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <p class="contact-label">Email</p>
+                        <p class="contact-value">mezueric@gmail.com</p>
+                    </div>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                
+                <a href="https://linkedin.com/in/mezu-eric" target="_blank" class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="contact-text">
+                        <p class="contact-label">LinkedIn</p>
+                        <p class="contact-value">Connect with me</p>
+                    </div>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                
+                <a href="https://github.com/MezuTech" target="_blank" class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="contact-text">
+                        <p class="contact-label">GitHub</p>
+                        <p class="contact-value">View my code</p>
+                    </div>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                
+                <a href="#" class="contact-item" id="resumeLink">
+                    <div class="contact-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="contact-text">
+                        <p class="contact-label">Resume</p>
+                        <p class="contact-value">Download my CV</p>
+                    </div>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Mezu Eric. Crafted with ❤️ and Flutter.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Resume button functionality (update link when you have it)
+        const resumeButtons = document.querySelectorAll('#navResumeBtn, #resumeLink');
+        resumeButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Replace '#' with your actual resume link when available
+                // window.open('YOUR_RESUME_LINK_HERE', '_blank');
+                alert('Please add your resume link! Update the JavaScript in the code.');
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe project cards and skill items
+        document.querySelectorAll('.project-card, .skill-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
