@@ -160,7 +160,7 @@
         }
 
         .hero-greeting {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: var(--text-secondary);
             font-weight: 500;
             margin-bottom: 1.5rem;
@@ -169,21 +169,21 @@
         }
 
         .hero-name {
-            font-size: clamp(3rem, 8vw, 7rem);
+            font-size: clamp(3.5rem, 8vw, 6rem);
             font-weight: 900;
             color: var(--primary);
-            letter-spacing: -3px;
+            letter-spacing: -2px;
             line-height: 1.1;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         .hero-role {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
             color: var(--text-secondary);
             font-weight: 600;
             margin-bottom: 2rem;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
             animation: fadeInUp 1s ease-out 0.4s both;
         }
 
@@ -585,13 +585,17 @@
                 padding: 6rem 5% 3rem;
             }
 
+            .hero-greeting {
+                font-size: 1.1rem;
+            }
+
             .hero-name {
                 font-size: 2.5rem;
                 letter-spacing: -1px;
             }
 
             .hero-role {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             .hero-description {
@@ -658,7 +662,7 @@
                 <a href="#work">Work</a>
                 <a href="#skills">Skills</a>
                 <a href="#contact">Contact</a>
-                <a href="#" class="resume-btn" id="navResumeBtn">
+                <a href="https://drive.google.com/file/d/1YhXqH9Ouav1VgSNMd7ILDjLXD9WyrtKG/view" target="_blank" class="resume-btn" id="navResumeBtn">
                     <i class="fas fa-download"></i> Resume
                 </a>
             </div>
@@ -675,7 +679,7 @@
                 <img src="profile.jpg" alt="Mezu Eric" class="profile-image">
             </div>
             <p class="hero-greeting">Hi, I'm Mezu Eric</p>
-            <h1 class="hero-name">Software Engineer / Mobile App Developer</h1>
+            <h1 class="hero-name">Software Engineer<br>Mobile App Developer</h1>
             <p class="hero-description">
                 I build intuitive, user-centered mobile applications that combine elegant design with powerful functionality. 
                 Specializing in Flutter development, I transform ideas into seamless cross-platform experiences.
@@ -882,7 +886,7 @@
                     <i class="fas fa-arrow-right"></i>
                 </a>
                 
-                <a href="#" class="contact-item" id="resumeLink">
+                <a href="https://drive.google.com/file/d/1YhXqH9Ouav1VgSNMd7ILDjLXD9WyrtKG/view" target="_blank" class="contact-item" id="resumeLink">
                     <div class="contact-icon">
                         <i class="fas fa-file-pdf"></i>
                     </div>
@@ -903,17 +907,6 @@
 
     <!-- JavaScript -->
     <script>
-        // Resume button functionality (update link when you have it)
-        const resumeButtons = document.querySelectorAll('#navResumeBtn, #resumeLink');
-        resumeButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Replace '#' with your actual resume link when available
-                // window.open('YOUR_RESUME_LINK_HERE', '_blank');
-                alert('Please add your resume link! Update the JavaScript in the code.');
-            });
-        });
-
         // Header scroll effect
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
