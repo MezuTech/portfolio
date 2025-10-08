@@ -300,7 +300,7 @@
 
         .project-image {
             width: 100%;
-            height: 280px;
+            height: 320px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
@@ -318,26 +318,85 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0);
             transition: all 0.3s ease;
+            z-index: 1;
         }
 
         .project-card:hover .project-image::after {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.1);
         }
 
-        .project-image img {
+        /* Slideshow Container */
+        .slideshow-container {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .project-card:hover .project-image img {
-            transform: scale(1.05);
+        .slideshow-item {
+            position: absolute;
+            width: auto;
+            height: 90%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 0;
+        }
+
+        .slideshow-item.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slideshow-item img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Slideshow Navigation Arrows */
+        .slideshow-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .slideshow-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slideshow-prev {
+            left: 10px;
+        }
+
+        .slideshow-next {
+            right: 10px;
         }
 
         .project-placeholder {
             font-size: 4rem;
             color: rgba(255, 255, 255, 0.3);
+            z-index: 2;
         }
 
         .project-info {
@@ -707,8 +766,29 @@
             <!-- Project 1: Cookies App -->
             <div class="project-card">
                 <div class="project-image">
-                    <div class="project-placeholder">🍪</div>
-                    <!-- <img src="project1.jpg" alt="Cookies App"> -->
+                    <div class="slideshow-container" id="cookiesSlideshow">
+                        <button class="slideshow-nav slideshow-prev" onclick="changeSlide('cookiesSlideshow', -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="slideshow-item active">
+                            <img src="projects/Cookies/cookies1-portrait.png" alt="Cookies App Screen 1">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/Cookies/cookies2-left.png" alt="Cookies App Screen 2">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/Cookies/cookies3-portrait.png" alt="Cookies App Screen 3">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/Cookies/cookies4-portrait.png" alt="Cookies App Screen 4">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/Cookies/cookies5-portrait.png" alt="Cookies App Screen 5">
+                        </div>
+                        <button class="slideshow-nav slideshow-next" onclick="changeSlide('cookiesSlideshow', 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Cookies App</h3>
@@ -732,9 +812,8 @@
 
             <!-- Project 2: Jobsly -->
             <div class="project-card">
-                <div class="project-image">
-                    <div class="project-placeholder">💼</div>
-                    <!-- <img src="project2.jpg" alt="Jobsly App"> -->
+                <div class="project-image" style="background: white;">
+                    <img src="projects/jobs.png" alt="Jobsly App" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Jobsly</h3>
@@ -953,6 +1032,38 @@
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
         });
+
+        // Slideshow functionality
+        function initSlideshow(containerId, interval = 3000) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const slides = container.querySelectorAll('.slideshow-item');
+            let currentIndex = 0;
+
+            function showNextSlide() {
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % slides.length;
+                slides[currentIndex].classList.add('active');
+            }
+
+            // Start slideshow
+            setInterval(showNextSlide, interval);
+        }
+
+        // Manual slide navigation
+        function changeSlide(containerId, direction) {
+            const container = document.getElementById(containerId);
+            const slides = container.querySelectorAll('.slideshow-item');
+            let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+            
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + slides.length) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }
+
+        // Initialize slideshows with different intervals for variety
+        initSlideshow('cookiesSlideshow', 3000);  // 3 seconds
     </script>
 </body>
 </html>
