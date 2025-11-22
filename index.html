@@ -434,19 +434,31 @@
             font-weight: 600;
         }
 
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         .project-link {
-            color: var(--accent);
+            color: white;
+            background: var(--primary);
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.95rem;
-            transition: gap 0.3s ease;
+            font-size: 0.9rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
         }
 
         .project-link:hover {
-            gap: 1rem;
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-2px);
         }
 
         /* Skills Section */
@@ -814,10 +826,12 @@
                         <span class="tag">E-commerce</span>
                         <span class="tag">UI/UX</span>
                     </div>
-                    <a href="#" class="project-link">
-                        View Project
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <div class="project-links">
+                        <a href="https://github.com/MezuTech/Cookies-App" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -840,18 +854,50 @@
                         <span class="tag">Hive</span>
                         <span class="tag">Dark Mode</span>
                     </div>
-                    <a href="#" class="project-link">
-                        View Project
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <div class="project-links">
+                        <a href="https://github.com/MezuTech/Jobsly" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Project 3: Logistics App - UNCOMMENT WHEN READY -->
-            <!-- 
+            <!-- Project 3: Logistics App -->
             <div class="project-card">
                 <div class="project-image">
-                    <div class="project-placeholder">📦</div>
+                    <div class="slideshow-container" id="logisticsSlideshow">
+                        <button class="slideshow-nav slideshow-prev" onclick="changeSlide('logisticsSlideshow', -1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="slideshow-item active">
+                            <img src="projects/logistics/logistics 1-portrait.png" alt="Logistics App Screen 1">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/logistics/logistics 2-portrait.png" alt="Logistics App Screen 2">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/logistics/logistics 3-portrait.png" alt="Logistics App Screen 3">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/logistics/logistics 4-portrait.png" alt="Logistics App Screen 4">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/logistics/logistics 5-portrait.png" alt="Logistics App Screen 5">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/logistics/logistics 6-portrait.png" alt="Logistics App Screen 6">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/logistics/logistics 7-portrait.png" alt="Logistics App Screen 7">
+                        </div>
+                        <div class="slideshow-item">
+                            <img src="projects/logistics/logistics 8-portrait.png" alt="Logistics App Screen 8">
+                        </div>
+                        <button class="slideshow-nav slideshow-next" onclick="changeSlide('logisticsSlideshow', 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Logistics Tracker</h3>
@@ -866,13 +912,14 @@
                         <span class="tag">Real-time</span>
                         <span class="tag">Geolocation</span>
                     </div>
-                    <a href="#" class="project-link">
-                        View Project
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <div class="project-links">
+                        <a href="https://github.com/MezuTech/LogisticsApp" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
                 </div>
             </div>
-            -->
         </div>
     </section>
 
@@ -1076,6 +1123,7 @@
 
         // Initialize slideshows with different intervals for variety
         initSlideshow('cookiesSlideshow', 3000);  // 3 seconds
+        initSlideshow('logisticsSlideshow', 3500); // 3.5 seconds
     </script>
 </body>
 </html>
