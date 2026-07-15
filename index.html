@@ -203,21 +203,23 @@
         }
 
         .resume-btn {
-            background: var(--primary);
-            color: var(--background);
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
+            background: var(--accent);
+            color: #FFFFFF;
+            padding: 0.72rem 1.15rem;
+            border-radius: var(--radius-sm);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 0.82rem;
             transition: all 0.3s ease;
-            border: 2px solid var(--primary);
+            border: 2px solid var(--accent);
+            box-shadow: 0 4px 12px rgba(2, 125, 253, 0.25);
         }
 
         .resume-btn:hover {
             background: transparent;
-            color: var(--primary);
+            color: var(--accent);
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(2, 125, 253, 0.2);
         }
 
         .resume-btn::after {
@@ -264,6 +266,12 @@
         .mobile-menu .resume-btn {
             text-align: center;
             margin-top: 1rem;
+            color: #FFFFFF;
+        }
+
+        .mobile-menu .resume-btn:hover {
+            color: var(--accent);
+            background: transparent;
         }
 
         .menu-overlay {
@@ -1395,11 +1403,6 @@
         .nav-links a {
             font-size: 0.85rem;
             font-weight: 700;
-        }
-
-        .resume-btn {
-            padding: 0.72rem 1.15rem;
-            border-radius: var(--radius-sm);
         }
 
         .hero {
