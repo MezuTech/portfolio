@@ -203,23 +203,22 @@
         }
 
         .resume-btn {
-            background: var(--accent);
-            color: #FFFFFF;
-            padding: 0.72rem 1.15rem;
+            background: transparent;
+            color: var(--primary);
+            padding: 0.65rem 1rem;
             border-radius: var(--radius-sm);
             text-decoration: none;
             font-weight: 700;
             font-size: 0.82rem;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent);
-            box-shadow: 0 4px 12px rgba(2, 125, 253, 0.25);
+            transition: all 0.25s ease;
+            border: 1.5px solid var(--border);
         }
 
         .resume-btn:hover {
-            background: transparent;
-            color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(2, 125, 253, 0.2);
+            background: var(--primary);
+            color: var(--background);
+            border-color: var(--primary);
+            transform: translateY(-1px);
         }
 
         .resume-btn::after {
@@ -266,12 +265,14 @@
         .mobile-menu .resume-btn {
             text-align: center;
             margin-top: 1rem;
-            color: #FFFFFF;
+            color: var(--primary);
+            border-color: var(--border);
         }
 
         .mobile-menu .resume-btn:hover {
-            color: var(--accent);
-            background: transparent;
+            background: var(--primary);
+            color: var(--background);
+            border-color: var(--primary);
         }
 
         .menu-overlay {
