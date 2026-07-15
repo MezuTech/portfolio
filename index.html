@@ -838,9 +838,9 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--card-bg);
             color: var(--primary);
-            border: none;
+            border: 1px solid var(--border);
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -860,7 +860,9 @@
         }
 
         .slideshow-nav:hover {
-            background: white;
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
             transform: translateY(-50%) scale(1.1);
         }
 
